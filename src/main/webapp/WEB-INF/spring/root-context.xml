@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 17.10.18 mysql연결을 담당하는 datasource 설정 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=UTC"/>
+		<!-- value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul" -->
+		<property name="username" value="root"/>
+		<property name="password" value="dudcjf"/>
+	</bean>	
+	
+	<!-- 17.10.18 SqlSessionFactory객체설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"/> <!-- *Mapper.xml로 끝나면 자동으로 인식 -->
+	</bean>
+	
+	<!-- 17.10.19 DAO인터페이스 구현 , SqlSessionTemplate는 sqlSessionFactory를 생성자로 주입해 설정함-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 17.10.19 *DAOImpl에 스프링의 빈으로 등록됨 -->
+	<context:component-scan base-package="org.zerock.persistence"/>
+	
+	<!-- 17.10.20  *ServiceImpl에 스프링의 빈으로 등록됨-->
+	<context:component-scan base-package="org.zerock.service"/>
+</beans>
