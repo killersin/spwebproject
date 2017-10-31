@@ -1,0 +1,56 @@
+create table tbl_member(
+	userid varchar(50) not null,
+    userpw varchar(50) not null,
+    username varchar(50) not null,
+    email varchar(100),
+    regdate timestamp default now(),
+    updatedate timestamp default now(),
+    primary key(userid)
+);
+
+create table tbl_board(
+	bno INT NOT NULL AUTO_INCREMENT,
+    	title VARCHAR(200) NOT NULL,
+	content TEXT NULL,
+    	writer VARCHAR(50) NOT NULL,
+    	regdate TIMESTAMP NOT NULL DEFAULT now(),
+    	viewcnt INT DEFAULT 0,
+    	PRIMARY KEY (bno)
+);
+
+create table tbl_reply(
+    rno int NOT NULL auto_increment,
+    bno int not null default 0,
+    replytext varchar(1000) not null,
+    replyer varchar(50) not null,
+    regdate TIMESTAMP NOT NULL default now(),
+    updatedate TIMESTAMP NOT NULL default now(),
+    primary key(rno)
+);
+//tbl_reply 외래키 추가
+alter table tbl_reply add constraint fk_board
+foreign key (bno) references tbl_board(bno);
+
+create table tbl_user(
+   uid varchar(50) NOT NULL,
+    upw varchar(50) NOT NULL,
+    uname varchar(100) NOT NULL,
+    upoint int NOT NULL DEFAULT 0,
+    primary key(uid)
+);
+
+create table tbl_message(
+   mid int not null auto_increment,
+    targetid varchar(50) NOT NULL,
+    sender varchar(50) NOT NULL,
+    message text not null,
+    opendate timestamp,
+    senddate timestamp not null default now(),
+    primary key(mid)
+);
+
+alter table tbl_message add constraint fk_usertarget
+foreign key (targetid) references tbl_user(uid);
+
+alter table tbl_message add constraint fk_usersender
+foreign key (targetid) references tbl_user(uid);
