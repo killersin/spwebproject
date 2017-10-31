@@ -41,7 +41,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardVO> listAll() throws Exception {
 		return session.selectList(namespace+".listAll");
 	}
-	//ÆäÀÌÂ¡ Ã³¸®
+	//í˜ì´ì§• ì²˜ë¦¬
 	@Override
 	public List<BoardVO> listPage(int page) throws Exception {
 		if(page<=0) {
@@ -50,8 +50,8 @@ public class BoardDAOImpl implements BoardDAO{
 		page= (page-1)*10;
 		return session.selectList(namespace+".listPage", page);
 	}
-	//ÆäÀÌÂ¡ Ã³¸® real, cri°´Ã¼¸¦ Àü´Ş¹Ş¾Æ getPageStart()¿Í getPerPageNum ¸Ş¼Òµå¸¦ »ç¿ë
-	//ÄÚµå¸¦ °£°áÇÏ°Ô ÇÏ´Â ¹æ¹ı Áß ÇÏ³ª´Â ¿©·¯ °³ÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ Àü´ŞÇÒ °æ¿ì °´Ã¼·Î Àü´ŞÇÏÀÚ.
+	//í˜ì´ì§• ì²˜ë¦¬ real, criê°ì²´ë¥¼ ì „ë‹¬ë°›ì•„ getPageStart()ì™€ getPerPageNum ë©”ì†Œë“œë¥¼ ì‚¬ìš©
+	//ì½”ë“œë¥¼ ê°„ê²°í•˜ê²Œ í•˜ëŠ” ë°©ë²• ì¤‘ í•˜ë‚˜ëŠ” ì—¬ëŸ¬ ê°œì˜ íŒŒë¼ë¯¸í„°ë¥¼ ì „ë‹¬í•  ê²½ìš° ê°ì²´ë¡œ ì „ë‹¬í•˜ì.
 	@Override
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 		return session.selectList(namespace+".listCriteria", cri);
@@ -62,7 +62,7 @@ public class BoardDAOImpl implements BoardDAO{
 		return session.selectOne(namespace+".countPaging", cri);
 	}
 	
-	//17.10.27 °Ë»öÀÇ dbÃ³¸®¸¦ À§ÇÑ ¸Ş¼Òµå Ãß°¡
+	//17.10.27 ê²€ìƒ‰ì˜ dbì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ ì¶”ê°€
 	@Override
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace+".listSearch", cri);

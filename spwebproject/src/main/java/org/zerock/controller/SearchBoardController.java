@@ -25,7 +25,7 @@ public class SearchBoardController {
 	@Inject
 	private BoardService service;
 	
-	//17.10.27 ¸®½ºÆ® Á¶È¸ ¸Ş¼Òµå °Ë»ö±îÁö °¡´É!
+	//17.10.27 ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ë©”ì†Œë“œ ê²€ìƒ‰ê¹Œì§€ ê°€ëŠ¥!
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 	    //logger.info(cri.toString());
@@ -38,14 +38,14 @@ public class SearchBoardController {
 	    pageMaker.setTotalCount(service.listSearchCount(cri));
 	    model.addAttribute("pageMaker", pageMaker);
 	  }
-	//°Ô½ÃÆÇ ¸®½ºÆ® Á¶È¸ ±â´É
+	//ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ê¸°ëŠ¥
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model,
 			@ModelAttribute("cri") SearchCriteria cri) throws Exception {
 		model.addAttribute(service.read(bno));
 	}
 	
-	//°Ô½Ã¹° »èÁ¦ Ã³¸®
+	//ê²Œì‹œë¬¼ ì‚­ì œ ì²˜ë¦¬
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String removePage(@RequestParam("bno") int bno, RedirectAttributes rttr,
 			SearchCriteria cri) throws Exception {
@@ -60,7 +60,7 @@ public class SearchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	//°Ô½Ã¹° ¼öÁ¤ Ã³¸®
+	//ê²Œì‹œë¬¼ ìˆ˜ì • ì²˜ë¦¬
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPage(@RequestParam("bno") int bno, Model model,
 			@ModelAttribute("cri") SearchCriteria cri) throws Exception {
@@ -81,7 +81,7 @@ public class SearchBoardController {
 		return "redirect:/sboard/list";
 	}
 	
-	//°Ô½Ã¹° µî·Ï ÆäÀÌÁö Ã³¸®
+	//ê²Œì‹œë¬¼ ë“±ë¡ í˜ì´ì§€ ì²˜ë¦¬
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGET() throws Exception {
 		logger.info("register get..................................");

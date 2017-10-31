@@ -23,17 +23,17 @@ import org.zerock.service.ReplyService;
 @RestController
 @RequestMapping("/replies")
 public class ReplyController {
-	//@PathVariable : URIÀÇ °æ·Î¿¡¼­ ¿øÇÏ´Â µ¥ÀÌÅÍ ÃßÃâÇÏ´Â ¿ëµµ
-	//@RequestBody : json µ¥ÀÌÅÍ¸¦ °´Ã¼·Î º¯È¯ÇØÁÖ´Â ¾î³ëÅ×ÀÌ¼Ç @ModelAttribute¿Í À¯»ç
+	//@PathVariable : URIì˜ ê²½ë¡œì—ì„œ ì›í•˜ëŠ” ë°ì´í„° ì¶”ì¶œí•˜ëŠ” ìš©ë„
+	//@RequestBody : json ë°ì´í„°ë¥¼ ê°ì²´ë¡œ ë³€í™˜í•´ì£¼ëŠ” ì–´ë…¸í…Œì´ì…˜ @ModelAttributeì™€ ìœ ì‚¬
 	private static final Logger logger = LoggerFactory.getLogger(ReplyController.class);
 	
 	@Inject
 	private ReplyService service;
 	
-	//´ñ±Û µî·Ï ±â´É insert
+	//ëŒ“ê¸€ ë“±ë¡ ê¸°ëŠ¥ insert
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo){
-		logger.info("¸®ÇÃ·¹ÀÌºêÀÌ¿À: " +vo.toString());
+		logger.info("ë¦¬í”Œë ˆì´ë¸Œì´ì˜¤: " +vo.toString());
 		ResponseEntity<String> entity = null;
 		try {
 			service.addReply(vo);
@@ -45,7 +45,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	//ÀüÃ¼ ´ñ±Û Á¶È¸ ±â´É list
+	//ì „ì²´ ëŒ“ê¸€ ì¡°íšŒ ê¸°ëŠ¥ list
 	@RequestMapping(value="/all/{bno}", method=RequestMethod.GET)
 	public ResponseEntity<List<ReplyVO>> list(
 			@PathVariable("bno") Integer bno){
@@ -59,7 +59,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	//´ñ±Û ¼öÁ¤ update
+	//ëŒ“ê¸€ ìˆ˜ì • update
 	@RequestMapping(value = "/{rno}", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> update(@PathVariable("rno") Integer rno,
 			@RequestBody ReplyVO vo){
@@ -75,7 +75,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	//»èÁ¦Ã³¸® delete
+	//ì‚­ì œì²˜ë¦¬ delete
 	@RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("rno") Integer rno){
 		ResponseEntity<String> entity = null;
@@ -89,7 +89,7 @@ public class ReplyController {
 		return entity;
 	}
 	
-	//ÆäÀÌÂ¡Ã³¸®
+	//í˜ì´ì§•ì²˜ë¦¬
 	@RequestMapping(value="/{bno}/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listPage(
 			@PathVariable("bno") Integer bno, @PathVariable("page") Integer page){

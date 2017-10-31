@@ -1,8 +1,8 @@
 package org.zerock.domain;
 
 public class SearchCriteria extends Criteria{
-	private String searchType; //°Ë»öÀÇ Á¾·ù
-	private String keyword; //°Ë»öÀÇ Å°¿öµå
+	private String searchType; //ê²€ìƒ‰ì˜ ì¢…ë¥˜
+	private String keyword; //ê²€ìƒ‰ì˜ í‚¤ì›Œë“œ
 	
 	public String getSearchType() {
 		return searchType;

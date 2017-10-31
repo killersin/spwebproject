@@ -12,10 +12,10 @@ public interface BoardService {
 	public void modify(BoardVO board) throws Exception;
 	public void remove(Integer bno) throws Exception;
 	public List<BoardVO> listAll() throws Exception;
-	//ÆäÀÌÂ¡ Ã³¸® Criteria Å¬·¡½º cri°´Ã¼ÀÌ¿ë
+	//í˜ì´ì§• ì²˜ë¦¬ Criteria í´ë˜ìŠ¤ criê°ì²´ì´ìš©
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	public int listCountCriteria (Criteria cri) throws Exception;
-	//17.10.27 °Ë»öÀÇ dbÃ³¸®¸¦ À§ÇÑ ¸Ş¼Òµå Ãß°¡
+	//17.10.27 ê²€ìƒ‰ì˜ dbì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ ì¶”ê°€
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	public int listSearchCount(SearchCriteria cri) throws Exception;
 }

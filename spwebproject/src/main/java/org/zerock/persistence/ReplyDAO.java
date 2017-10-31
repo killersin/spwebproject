@@ -11,7 +11,7 @@ public interface ReplyDAO {
 	public void update(ReplyVO vo) throws Exception;
 	public void delete(Integer rno) throws Exception;
 	
-	//ÆäÀÌÂ¡Ã³¸®
+	//í˜ì´ì§•ì²˜ë¦¬
 	public List<ReplyVO> listPage(Integer bno, Criteria cri) throws Exception;
 	public int count(Integer bno) throws Exception;
 	

@@ -12,14 +12,14 @@ public interface BoardDAO {
 	public void update(BoardVO bvo) throws Exception;
 	public void delete(Integer bno) throws Exception;
 	public List<BoardVO> listAll() throws Exception;
-	//ÆäÀÌÂ¡ Ã³¸®
+	//í˜ì´ì§• ì²˜ë¦¬
 	public List<BoardVO> listPage(int page) throws Exception;
-	//ÆäÀÌÂ¡ Ã³¸® real, cri°´Ã¼¸¦ Àü´Ş¹Ş¾Æ getPageStart()¿Í getPerPageNum ¸Ş¼Òµå¸¦ »ç¿ë
+	//í˜ì´ì§• ì²˜ë¦¬ real, criê°ì²´ë¥¼ ì „ë‹¬ë°›ì•„ getPageStart()ì™€ getPerPageNum ë©”ì†Œë“œë¥¼ ì‚¬ìš©
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
-	//tbl_board count ¸Ş¼Òµå
+	//tbl_board count ë©”ì†Œë“œ
 	public int countPaging(Criteria cri) throws Exception;
 	
-	//17.10.27 °Ë»öÀÇ dbÃ³¸®¸¦ À§ÇÑ ¸Ş¼Òµå Ãß°¡
+	//17.10.27 ê²€ìƒ‰ì˜ dbì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ ì¶”ê°€
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	public int listSearchCount(SearchCriteria cri) throws Exception;
 }

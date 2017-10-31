@@ -47,7 +47,7 @@ public class BoardServiceImpl implements BoardService{
 	public int listCountCriteria(Criteria cri) throws Exception{
 		return bdao.countPaging(cri);
 	}
-	//17.10.27 °Ë»öÀÇ dbÃ³¸®¸¦ À§ÇÑ ¸Ş¼Òµå Ãß°¡
+	//17.10.27 ê²€ìƒ‰ì˜ dbì²˜ë¦¬ë¥¼ ìœ„í•œ ë©”ì†Œë“œ ì¶”ê°€
 	@Override
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 		return bdao.listSearch(cri);

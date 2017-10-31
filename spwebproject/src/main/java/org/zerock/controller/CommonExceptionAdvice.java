@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-//È£ÃâµÇ´Â ¸Ş¼Òµå¿¡¼­ ¹ß»ıµÈ ExceptionÀ» ¸ğµÎ Ã³¸®ÇÏ´Â ¿ªÇÒ
+//í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œì—ì„œ ë°œìƒëœ Exceptionì„ ëª¨ë‘ ì²˜ë¦¬í•˜ëŠ” ì—­í• 
 @ControllerAdvice 
 public class CommonExceptionAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(CommonExceptionAdvice.class);
@@ -17,7 +17,7 @@ public class CommonExceptionAdvice {
 		return "error_common";
 	}*/
 	
-	//¿¡·¯ ¸Ş½ÃÁö È­¸éÀ¸·Î Àü´ŞÇÏ±â ex) http://localhost:8081/board/read?bno=????
+	//ì—ëŸ¬ ë©”ì‹œì§€ í™”ë©´ìœ¼ë¡œ ì „ë‹¬í•˜ê¸° ex) http://localhost:8081/board/read?bno=????
 	@ExceptionHandler(Exception.class)
 	public ModelAndView errorModelAndView(Exception e) {
 		ModelAndView modelAndView = new ModelAndView();

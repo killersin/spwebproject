@@ -33,14 +33,14 @@ public class BoardController {
 		logger.info("regist post...................");
 		logger.info(board.toString());
 		service.regist(board);
-		model.addAttribute("result", "success"); // reulst¸¦ board/success.jps·Î Àü¼Û
+		model.addAttribute("result", "success"); // reulstë¥¼ board/success.jpsë¡œ ì „ì†¡
 		//rttr.addFlashAttribute("msg", "SUCCESS");
 		
 		//return "/board/success";
 		return "redirect:/board/listAll";
 	}
 	
-	//tbl-board¸®½ºÆ® Á¶È¸, 17.10.25 ÆäÀÌÂ¡Ã³¸® Ãß°¡
+	//tbl-boardë¦¬ìŠ¤íŠ¸ ì¡°íšŒ, 17.10.25 í˜ì´ì§•ì²˜ë¦¬ ì¶”ê°€
 	//@RequestMapping(value="/listAll", method=RequestMethod.GET)
 	@RequestMapping(value="/listCri", method=RequestMethod.GET)
 	public void listAll(Criteria cri, Model model) throws Exception{
@@ -50,13 +50,13 @@ public class BoardController {
 		model.addAttribute("list", service.listCriteria(cri));
 	}
 	
-	//tbl-board »ó¼¼º¸±â
+	//tbl-board ìƒì„¸ë³´ê¸°
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
 		model.addAttribute(service.read(bno));
 	}
 	
-	//tbl-board »èÁ¦
+	//tbl-board ì‚­ì œ
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
 	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception{
 		service.remove(bno);
@@ -64,7 +64,7 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
-	//tbl-board ¼öÁ¤
+	//tbl-board ìˆ˜ì •
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public void modifyGET(int bno, Model model) throws Exception{
 		model.addAttribute(service.read(bno));
@@ -77,7 +77,7 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
-	//listPage()´Â PageMaker¸¦ ±¸¼ºÇØ¼­ Model¿¡ ´ã´Â ¸Ş¼Òµå
+	//listPage()ëŠ” PageMakerë¥¼ êµ¬ì„±í•´ì„œ Modelì— ë‹´ëŠ” ë©”ì†Œë“œ
 	@RequestMapping(value="/listPage", method=RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
 		logger.info(cri.toString());
@@ -119,8 +119,8 @@ public class BoardController {
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(BoardVO board, Criteria cri,
 			RedirectAttributes rttr) throws Exception {
-		//logger.info("º¸µå½ºÆ®¸µ: "+board.toString());
-		logger.info("¾¾¾Ë¾ÆÀÌ: " +cri.toString());
+		//logger.info("ë³´ë“œìŠ¤íŠ¸ë§: "+board.toString());
+		logger.info("ì”¨ì•Œì•„ì´: " +cri.toString());
 		service.modify(board);
 		
 		rttr.addAttribute("page", cri.getPage());
