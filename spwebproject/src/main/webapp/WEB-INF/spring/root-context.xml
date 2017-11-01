@@ -43,7 +43,12 @@
 	<context:component-scan base-package="org.zerock.aop"/>
 	<aop:config/>
 	
-	
 	<!-- 17.10.31 AspectJ 라이브러리를 이용해 Proxy객체를 생성하는 용도 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- 17.11.01 트랜잭션을 위한 트랜잭션 매니저 설정 추가  -->	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:annotation-driven/> <!-- @Transactional 어노테이션을 이용한 트랜잭션 관리가 가능 -->
 </beans>

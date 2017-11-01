@@ -22,4 +22,8 @@ public interface BoardDAO {
 	//17.10.27 검색의 db처리를 위한 메소드 추가
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+	
+	//17.11.1 댓글 카운트 변경을 위한 메소드
+	public void updateReplyCnt(Integer bno, int amount) throws Exception;
+	public void updateViewCnt(Integer bno) throws Exception;
 }

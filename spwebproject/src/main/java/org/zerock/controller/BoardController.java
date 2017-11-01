@@ -53,6 +53,8 @@ public class BoardController {
 	//tbl-board 상세보기
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+//		BoardVO vo = service.read(bno);
+//		logger.info(vo.toString());
 		model.addAttribute(service.read(bno));
 	}
 	

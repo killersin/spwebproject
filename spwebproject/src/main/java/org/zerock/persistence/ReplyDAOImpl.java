@@ -15,6 +15,7 @@ import org.zerock.domain.ReplyVO;
 public class ReplyDAOImpl implements ReplyDAO{
 	@Inject
 	private SqlSession session;
+	
 	private static String namespace = "org.zerock.mapper.ReplyMapper";
 	
 	@Override
@@ -48,6 +49,12 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public int count(Integer bno) throws Exception {
 		return session.selectOne(namespace+".count", bno);
 	}
+
+	@Override
+	public int getBno(Integer rno) throws Exception {
+		return session.selectOne(namespace+".getBno", rno);
+	}
+	
 	
 	
 }

@@ -54,3 +54,6 @@ foreign key (targetid) references tbl_user(uid);
 
 alter table tbl_message add constraint fk_usersender
 foreign key (targetid) references tbl_user(uid);
+
+//댓글 카운트 처리의 칼럼 추가
+alter table tbl_board add column replycnt int default 0;
