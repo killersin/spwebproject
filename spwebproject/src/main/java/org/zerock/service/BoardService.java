@@ -20,4 +20,5 @@ public interface BoardService {
 	//17.10.27 검색의 db처리를 위한 메소드 추가
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+	public List<String> getAttach(Integer bno) throws Exception;
 }

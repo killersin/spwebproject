@@ -3,8 +3,28 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
 <!-- Main content -->
+<style type="text/css">
+    .popup {position: absolute;}
+    .back { background-color: gray; opacity:0.5; width: 100%; height: 300%; overflow:hidden;  z-index:1101;}
+    .front { 
+       z-index:1110; opacity:1; boarder:1px; margin: auto; 
+      }
+     .show{
+       position:relative;
+       max-width: 1200px; 
+       max-height: 800px; 
+       overflow: auto;       
+     } 
+    </style>
+
+    <div class='popup back' style="display:none;"></div>
+    <div id="popup_front" class='popup front' style="display:none;">
+    	<img id="popup_img">
+    </div>
 <section class="content">
 	<div class="row">
 		<!-- left column -->
@@ -39,6 +59,9 @@
 							readonly="readonly">
 					</div>
 				</div><!-- /.box-body -->
+				
+				<ul class="mailbox-attachments clearfix uploadedList"></ul>
+				
 				<div class="box-footer">
 					<button type="submit" class="btn btn-warning">MODIFY</button>
 					<button type="submit" class="btn btn-danger">REMOVE</button>
@@ -104,7 +127,15 @@
 	</div>      
 </section>
 <!-- /.content -->
-
+<script id="templateAttach" type="text/x-handlebars-template">
+	<li data-src='{{fullName}}'>
+  		<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+  		<div class="mailbox-attachment-info">
+			<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
+			</span>
+  		</div>
+	</li>                
+</script> 
 <script id="template" type="text/x-handlebars-template">
 	{{#each .}}
 	<li class="replyLi" data-rno={{rno}}>
@@ -276,6 +307,35 @@
 			formObj.submit();
 		});
 		
+		var bno = ${boardVO.bno};
+		var template = Handlebars.compile($("#templateAttach").html());
+		
+		$.getJSON("/sboard/getAttach/"+bno, function(list){
+			$(list).each(function(){
+				var fileInfo = getFileInfo(this);
+				var html = template(fileInfo);
+				$(".uploadedList").append(html);
+			});
+		});
+		//사용자가 첨부파일의 제목을 클릭한 경우 해당 파일이 이미지인지 체크하면 화면 이동을 못하도록 event.preventDefault()처리한다.
+		//첨부 파일을 클릭하면 워논 파일을 천천히 열리면서 보여준다.
+		$(".uploadedList").on("click", ".mailbox-attachment-info a", function(event){	
+			var fileLink = $(this).attr("href");
+			if(checkImageType(fileLink)){
+				event.preventDefault();
+				var imgTag = $("#popup_img");
+				imgTag.attr("src", fileLink);
+				console.log(imgTag.attr("src"));
+				$(".popup").show('slow');
+				imgTag.addClass("show");		
+			}	
+		});
+		
+		$("#popup_img").on("click", function(){
+			
+			$(".popup").hide('slow');
+			
+		});	
 	});
 </script>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>

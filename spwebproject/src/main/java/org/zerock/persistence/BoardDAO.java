@@ -26,4 +26,6 @@ public interface BoardDAO {
 	//17.11.1 댓글 카운트 변경을 위한 메소드
 	public void updateReplyCnt(Integer bno, int amount) throws Exception;
 	public void updateViewCnt(Integer bno) throws Exception;
+	public void addAttach(String fullName) throws Exception; //첨부 파일 정보를 저장하는 기능
+	public List<String> getAttach(Integer bno) throws Exception; //특정 게시물의 첨부 파일을 순서대로 가져오는 메소드
 }
