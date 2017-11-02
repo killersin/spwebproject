@@ -63,9 +63,9 @@
 				<ul class="mailbox-attachments clearfix uploadedList"></ul>
 				
 				<div class="box-footer">
-					<button type="submit" class="btn btn-warning">MODIFY</button>
-					<button type="submit" class="btn btn-danger">REMOVE</button>
-					<button type="submit" class="btn btn-primary">GO LIST</button>
+					<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
+   					<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
+   					<button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
 				</div>
 			</div><!-- /.box -->
 		</div>
@@ -296,7 +296,25 @@
 			formObj.submit();
 		});
 		
+		/* $("#removeBtn").on("click", function(){
+			formObj.attr("action", "/sboard/removePage");
+			formObj.submit();
+		}); */
 		$("#removeBtn").on("click", function(){
+			var replyCnt = $("#replycntSmall").html().replace(/[^0-9]/g, "");
+			if(replyCnt > 0){
+				alert("댓글이 달린 게시글은 삭제할 수 없습니다.");
+				return;
+			}
+			var arr = [];
+			$(".uploaded li").each(function(index){
+				arr.push($(this).attr("data-src"));
+			});
+			if(arr.length > 0){
+				$.post("/deleteAllFiles", {files:arr}, function(){
+					
+				});
+			}
 			formObj.attr("action", "/sboard/removePage");
 			formObj.submit();
 		});

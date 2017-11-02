@@ -28,4 +28,8 @@ public interface BoardDAO {
 	public void updateViewCnt(Integer bno) throws Exception;
 	public void addAttach(String fullName) throws Exception; //첨부 파일 정보를 저장하는 기능
 	public List<String> getAttach(Integer bno) throws Exception; //특정 게시물의 첨부 파일을 순서대로 가져오는 메소드
+	
+	//17.11.2 기존 업로드한 모든 파일의 정보는 삭제하고, 새롭게 첨부파일과 관련된 정보를 넣는 방법의 메소드
+	public void deleteAttach(Integer bno) throws Exception;
+	public void replaceAttach(String fullName, Integer bno) throws Exception;
 }
