@@ -250,8 +250,8 @@
                   <li class="user-header">
                     <img src="/resources/dist/img/증명사진_신영철.png" class="img-circle" alt="User Image" />
                     <p>
-                      SHIN YEONG CHEOL - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      SHIN YEONG CHEOL -<br> Web Developer
+                      <small>Member since Nov. 2017</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -272,7 +272,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -314,13 +314,16 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="#">
+            	<a href="/sboard/list">
+                <i class="fa fa-dashboard"></i> <span>Free board</span> <i class="fa fa-angle-left pull-right"></i>
+              	</a>
+              <!-- <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="/resources/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                 <li><a href="/resources/index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="treeview">
               <a href="#">

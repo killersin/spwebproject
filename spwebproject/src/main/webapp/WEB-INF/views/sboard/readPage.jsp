@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script type="text/javascript" src="/resources/js/upload.js"></script>
@@ -44,27 +44,30 @@
 	
 				<div class="box-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input type="text"
-							name='title' class="form-control" value="${boardVO.title}"
-							readonly="readonly">
+						<label for="exampleInputEmail1">Title</label> 
+						<input type="text" name='title' class="form-control" value="${boardVO.title}" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Content</label>
-						<textarea class="form-control" name="content" rows="3"
-							readonly="readonly">${boardVO.content}</textarea>
+						<textarea class="form-control" name="content" rows="3" readonly="readonly">${boardVO.content}</textarea>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Writer</label> <input type="text"
-							name="writer" class="form-control" value="${boardVO.writer}"
-							readonly="readonly">
+						<label for="exampleInputEmail1">Writer</label> 
+						<input type="text" name="writer" class="form-control" value="${boardVO.writer}" readonly="readonly">
 					</div>
 				</div><!-- /.box-body -->
 				
-				<ul class="mailbox-attachments clearfix uploadedList"></ul>
-				
 				<div class="box-footer">
+					<div>
+						<hr>
+					</div>
+					
+					<ul class="mailbox-attachments clearfix uploadedList"></ul>
+				
+					<c:if test="${login.uid == boardVO.writer}">
 					<button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
    					<button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
+   					</c:if>
    					<button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
 				</div>
 			</div><!-- /.box -->
@@ -78,6 +81,7 @@
 				<div class="box-header">
 					<h3 class="box-title">ADD NEW REPLY(댓글  추가)</h3>
 				</div>
+				<c:if test="${not empty login }">
 				<div class="box-body">
 					<label for="exampleInputEmail1">Writer</label> 
 					<input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter"> 
@@ -85,9 +89,14 @@
 					<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">
 				</div><!-- /.box-body -->
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary" id="replyAddBtn">
-					ADD REPLY</button>
+					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD REPLY</button>
 				</div>
+				</c:if>
+				<c:if test="${empty login }">
+				<div class="box-body">
+					<div><a href="javascript:goLogin();">Login Please</a></div>
+				</div>
+				</c:if>
 			</div>
 			<!-- The time line -->
 			<ul class="timeline">
@@ -147,8 +156,10 @@
   		<h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
   		<div class="timeline-body">{{replytext}} </div>
     	<div class="timeline-footer">
+		{{#eqReplyer replyer }}
     		<a class="btn btn-primary btn-xs" 
 	    		data-toggle="modal" data-target="#modifyModal">Modify</a>
+		{{/eqReplyer}} 
     	</div>
 	</div>			
 	</li>
@@ -156,6 +167,13 @@
 </script>
 
 <script>
+	Handlebars.registerHelp("eqReplyer", function(replyer, block){
+		var accum = '';
+		if(replyer == '${login.uid}'){
+			accum += block.fn();
+			return accum;
+		}
+	});
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
 		var dateObj = new Date(timeValue);
 		var year = dateObj.getFullYear();

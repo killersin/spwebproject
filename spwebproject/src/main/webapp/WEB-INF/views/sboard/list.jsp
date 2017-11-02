@@ -18,7 +18,7 @@
 				<div class='box-body'>
 					<select name="searchType">
 						<option value="n" <c:out value="${cri.searchType == null?'selected':''}"/>>
-							---</option>
+							카테고리 선택</option>
 						<option value="t" <c:out value="${cri.searchType eq 't'?'selected':''}"/>>
 							제목</option>
 						<option value="c" <c:out value="${cri.searchType eq 'c'?'selected':''}"/>>

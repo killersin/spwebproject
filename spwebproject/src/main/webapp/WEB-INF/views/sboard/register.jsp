@@ -36,8 +36,9 @@
 								placeholder="Enter ..."></textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">작성자</label> <input type="text"
-								name="writer" class="form-control" placeholder="Enter Writer">
+							<label for="exampleInputEmail1">작성자</label> 
+							<input type="text" name="writer" class="form-control" value='${login.uid }' readonly> 
+							<!-- placeholder="Enter Writer" -->
 						</div>
 						
 						<div class="form-group">
